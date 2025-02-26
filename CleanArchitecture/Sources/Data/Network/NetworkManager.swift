@@ -27,8 +27,7 @@ class NetworkManager {
     func fetchData<T: Decodable>(
         url: String,
         method: HTTPMethod,
-        parameters: Parameters?,
-        headers: HTTPHeaders?
+        parameters: Parameters?
     ) async -> Result<T, NetworkError> {
         guard let url = URL(string: url) else { return .failure(.urlError) }
 
