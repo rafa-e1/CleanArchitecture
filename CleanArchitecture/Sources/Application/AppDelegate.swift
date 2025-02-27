@@ -5,6 +5,7 @@
 //  Created by RAFA on 2/25/25.
 //
 
+import CoreData
 import UIKit
 
 @main
@@ -35,4 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didDiscardSceneSessions sceneSessions: Set<UISceneSession>
     ) {
     }
+
+    // MARK: - Core Data Stack
+
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "CleanArchitecture")
+        container.loadPersistentStores(completionHandler: { _, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
 }
