@@ -18,7 +18,7 @@
 		05FA72772D6DC43500DE314B /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FA72762D6DC43500DE314B /* NetworkError.swift */; };
 		05FA72792D6DC58900DE314B /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FA72782D6DC58900DE314B /* CoreDataError.swift */; };
 		05FA727B2D6E20DB00DE314B /* UserListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FA727A2D6E20DB00DE314B /* UserListUseCase.swift */; };
-		05FDBD232D6E234600BE9E3A /* UserListRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDBD222D6E234600BE9E3A /* UserListRepositoryProtocol.swift */; };
+		05FDBD232D6E234600BE9E3A /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDBD222D6E234600BE9E3A /* UserRepositoryProtocol.swift */; };
 		05FDBD2A2D6EF19600BE9E3A /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDBD292D6EF19600BE9E3A /* UserSession.swift */; };
 		05FDBD2C2D6EF35C00BE9E3A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDBD2B2D6EF35C00BE9E3A /* NetworkManager.swift */; };
 		05FDBD2F2D6EF98C00BE9E3A /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDBD2E2D6EF98C00BE9E3A /* NetworkEnvironment.swift */; };
@@ -63,7 +63,7 @@
 		05FA72762D6DC43500DE314B /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		05FA72782D6DC58900DE314B /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		05FA727A2D6E20DB00DE314B /* UserListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListUseCase.swift; sourceTree = "<group>"; };
-		05FDBD222D6E234600BE9E3A /* UserListRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRepositoryProtocol.swift; sourceTree = "<group>"; };
+		05FDBD222D6E234600BE9E3A /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		05FDBD292D6EF19600BE9E3A /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		05FDBD2B2D6EF35C00BE9E3A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		05FDBD2D2D6EF8FA00BE9E3A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 		05FDBD212D6E232F00BE9E3A /* RepositoryProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				05FDBD222D6E234600BE9E3A /* UserListRepositoryProtocol.swift */,
+				05FDBD222D6E234600BE9E3A /* UserRepositoryProtocol.swift */,
 			);
 			path = RepositoryProtocol;
 			sourceTree = "<group>";
@@ -531,7 +531,7 @@
 				05FA72642D6DC16100DE314B /* SceneDelegate.swift in Sources */,
 				05FA727B2D6E20DB00DE314B /* UserListUseCase.swift in Sources */,
 				05FDBD312D6EFE3500BE9E3A /* UserNetwork.swift in Sources */,
-				05FDBD232D6E234600BE9E3A /* UserListRepositoryProtocol.swift in Sources */,
+				05FDBD232D6E234600BE9E3A /* UserRepositoryProtocol.swift in Sources */,
 				05FA72752D6DC31600DE314B /* UserListItem.swift in Sources */,
 				05FDBD2F2D6EF98C00BE9E3A /* NetworkEnvironment.swift in Sources */,
 				05FDBD362D7049FF00BE9E3A /* UserCoreData.swift in Sources */,

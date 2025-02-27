@@ -16,9 +16,9 @@ protocol UserListUseCaseProtocol {
 
 struct UserListUseCase: UserListUseCaseProtocol {
 
-    private let repository: UserListRepositoryProtocol
+    private let repository: UserRepositoryProtocol
 
-    init(repository: UserListRepositoryProtocol) {
+    init(repository: UserRepositoryProtocol) {
         self.repository = repository
     }
 
