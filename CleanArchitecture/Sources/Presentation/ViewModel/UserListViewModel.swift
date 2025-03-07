@@ -12,7 +12,7 @@ protocol UserListViewModelProtocol {
 
 }
 
-final class UserListItemViewModel: UserListViewModelProtocol {
+final class UserListViewModel: UserListViewModelProtocol {
 
     // MARK: - Properties
 
