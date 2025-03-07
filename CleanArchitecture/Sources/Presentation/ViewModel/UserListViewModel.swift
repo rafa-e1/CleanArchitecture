@@ -88,9 +88,35 @@ final class UserListItemViewModel: UserListViewModelProtocol {
         let cellData: Observable<[UserListCellData]> = Observable.combineLatest(
             input.tabButtonType,
             fetchUserList,
-            favoriteUserList
-        ).map { tabButtonType, fetchUserList, favoriteUserList in
-            let cellData: [UserListCellData] = []
+            favoriteUserList,
+            allFavoriteUserList
+        ).map { [weak self] tabButtonType, fetchUserList, favoriteUserList, allFavoriteUserList in
+            var cellData: [UserListCellData] = []
+            guard let self = self else { return cellData }
+
+            switch tabButtonType {
+            case .api:
+                let tuple = useCase.checkFavoriteState(
+                    fetchUsers: fetchUserList,
+                    favoriteUsers: allFavoriteUserList
+                )
+
+                let userCellList = tuple.map { user, isFavorite in
+                    UserListCellData.user(user: user, isFavorite: isFavorite)
+                }
+
+                return userCellList
+            case .favorite:
+                let dict = useCase.convertListToDictionary(favoriteUsers: favoriteUserList)
+                let keys = dict.keys.sorted()
+                keys.forEach { key in
+                    cellData.append(.header(key))
+                    if let users = dict[key] {
+                        cellData += users.map { UserListCellData.user(user: $0, isFavorite: true) }
+                    }
+                }
+            }
+
             return cellData
         }
 
