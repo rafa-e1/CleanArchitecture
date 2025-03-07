@@ -21,6 +21,7 @@ final class UserListItemViewModel: UserListViewModelProtocol {
     private let fetchUserList = BehaviorRelay<[UserListItem]>(value: [])
     private let favoriteUserList = BehaviorRelay<[UserListItem]>(value: [])
     private let allFavoriteUserList = BehaviorRelay<[UserListItem]>(value: [])
+    private var page: Int = 1
 
     private let error = PublishRelay<String>()
     private let disposeBag = DisposeBag()
@@ -52,13 +53,14 @@ final class UserListItemViewModel: UserListViewModelProtocol {
 
     func transform(input: Input) -> Output {
         input.query.bind { [weak self] query in
-            guard let isValidate = self?.validateQuery(query: query), isValidate else {
-                self?.getFavoriteUsers(query: query)
+            guard let self = self, validateQuery(query: query) else {
+                self?.getFavoriteUsers(query: "")
                 return
             }
 
-            self?.fetchUser(query: query, page: 0)
-            self?.getFavoriteUsers(query: query)
+            page = 1
+            fetchUser(query: query, page: page)
+            getFavoriteUsers(query: query)
         }.disposed(by: disposeBag)
 
         input.saveFavorite
@@ -75,9 +77,13 @@ final class UserListItemViewModel: UserListViewModelProtocol {
                 self?.deleteFavoriteUser(userID: userID, query: query)
             }.disposed(by: disposeBag)
 
-        input.fetchMore.bind {
-            <#code#>
-        }.disposed(by: disposeBag)
+        input.fetchMore
+            .withLatestFrom(input.query)
+            .bind { [weak self] query in
+                guard let self = self else { return }
+                page += 1
+                fetchUser(query: query, page: page)
+            }.disposed(by: disposeBag)
 
         let cellData: Observable<[UserListCellData]> = Observable.combineLatest(
             input.tabButtonType,
