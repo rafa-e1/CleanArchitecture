@@ -69,9 +69,11 @@ final class UserListItemViewModel: UserListViewModelProtocol {
                 self?.saveFavoriteUser(user: user, query: query)
             }.disposed(by: disposeBag)
 
-        input.deleteFavorite.bind { userID in
-            <#code#>
-        }.disposed(by: disposeBag)
+        input.deleteFavorite
+            .withLatestFrom(input.query, resultSelector: { ($0, $1) })
+            .bind { userID, query in
+                self.deleteFavoriteUser(userID: userID, query: query)
+            }.disposed(by: disposeBag)
 
         input.fetchMore.bind {
             <#code#>
@@ -133,6 +135,16 @@ final class UserListItemViewModel: UserListViewModelProtocol {
 
     private func saveFavoriteUser(user: UserListItem, query: String) {
         let result = useCase.saveFavoriteUser(user: user)
+        switch result {
+        case .success:
+            getFavoriteUsers(query: query)
+        case .failure(let error):
+            self.error.accept(error.description)
+        }
+    }
+
+    private func deleteFavoriteUser(userID: Int, query: String) {
+        let result = useCase.deleteFavoriteUser(userID: userID)
         switch result {
         case .success:
             getFavoriteUsers(query: query)
