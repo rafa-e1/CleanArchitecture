@@ -11,7 +11,7 @@ protocol UserNetworkProtocol {
     func fetchUsers(query: String, page: Int) async -> Result<UserListResult, NetworkError>
 }
 
-final class UserNetwork {
+final class UserNetwork: UserNetworkProtocol {
 
     private let manager: NetworkManagerProtocol
 
