@@ -16,7 +16,7 @@ protocol SessionProtocol {
     ) -> DataRequest
 }
 
-class UserSession {
+class UserSession: SessionProtocol {
 
     private var session: Session
 
