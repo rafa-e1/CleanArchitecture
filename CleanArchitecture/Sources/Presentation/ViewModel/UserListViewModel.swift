@@ -71,8 +71,8 @@ final class UserListItemViewModel: UserListViewModelProtocol {
 
         input.deleteFavorite
             .withLatestFrom(input.query, resultSelector: { ($0, $1) })
-            .bind { userID, query in
-                self.deleteFavoriteUser(userID: userID, query: query)
+            .bind { [weak self] userID, query in
+                self?.deleteFavoriteUser(userID: userID, query: query)
             }.disposed(by: disposeBag)
 
         input.fetchMore.bind {
