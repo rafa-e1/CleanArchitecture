@@ -16,10 +16,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene),
+              let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        else {
+            return
+        }
+
+        let coreData = UserCoreData(viewContext: appDelegate.persistentContainer.viewContext)
+        let network = UserNetwork(manager: NetworkManager(session: UserSession()))
+        let userRepository = UserRepository(coreData: coreData, network: network)
+        let userUseCase = UserListUseCase(repository: userRepository)
+        let userViewModel = UserListViewModel(useCase: userUseCase)
+        let userViewController = UserListViewController(viewModel: userViewModel)
+        let navigationController = UINavigationController(rootViewController: userViewController)
 
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UIViewController()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
