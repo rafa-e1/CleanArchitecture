@@ -194,9 +194,9 @@ final class UserListViewModel: UserListViewModelProtocol {
     }
 }
 
-enum TabButtonType {
-    case api
-    case favorite
+enum TabButtonType: String {
+    case api = "API"
+    case favorite = "Favorite"
 }
 
 enum UserListCellData {
