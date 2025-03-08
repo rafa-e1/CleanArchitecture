@@ -36,7 +36,12 @@ class UserListViewController: UIViewController {
         return tableView
     }()
 
+    private let saveFavorite = PublishRelay<UserListItem>()
+    private let deleteFavorite = PublishRelay<Int>()
+    private let fetchMore = PublishRelay<Void>()
     private let viewModel: UserListViewModelProtocol
+
+    private let disposeBag = DisposeBag()
 
     // MARK: - Initializer
 
@@ -46,18 +51,49 @@ class UserListViewController: UIViewController {
 
         view.backgroundColor = .white
         setUI()
+        bindViewModel()
+        bindView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Lifecycle
+    // MARK: - Bindings
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func bindViewModel() {
+        let tabButtonType = tabButtonView.selectedType.compactMap { $0 }
+        let query = searchTextField.rx.text.orEmpty.debounce(
+            .milliseconds(300), scheduler: MainScheduler.instance
+        )
 
-        view.backgroundColor = .systemRed
+        let output = viewModel.transform(
+            input: UserListViewModel.Input(
+                tabButtonType: tabButtonType,
+                query: query,
+                saveFavorite: saveFavorite.asObservable(),
+                deleteFavorite: deleteFavorite.asObservable(),
+                fetchMore: fetchMore.asObservable()
+            )
+        )
+
+        output.cellData.bind(to: tableView.rx.items) { tableView, index, item in
+            return UITableViewCell()
+        }.disposed(by: disposeBag)
+
+        output.error.bind { [weak self] errorMessage in
+            let alert = UIAlertController(
+                title: "에러",
+                message: errorMessage,
+                preferredStyle: .alert
+            )
+            alert.addAction(.init(title: "확인", style: .default))
+            self?.present(alert, animated: true)
+        }.disposed(by: disposeBag)
+    }
+
+    private func bindView() {
+        
     }
 
     // MARK: - Helpers
