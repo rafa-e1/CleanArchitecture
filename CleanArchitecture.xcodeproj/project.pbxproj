@@ -11,6 +11,8 @@
 		05096F8A2D7A7D7E00563E91 /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05096F892D7A7D7E00563E91 /* MockUserRepository.swift */; };
 		05096F8E2D7A829C00563E91 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05096F8D2D7A829C00563E91 /* UserListViewModel.swift */; };
 		05096F912D7A94F000563E91 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05096F902D7A94F000563E91 /* UserListViewController.swift */; };
+		050972872D86E78200563E91 /* TabButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050972862D86E78200563E91 /* TabButtonView.swift */; };
+		050972892D86E7D100563E91 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050972882D86E7D100563E91 /* UserTableViewCell.swift */; };
 		05FA725F2D6DC16100DE314B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05FA72562D6DC16100DE314B /* Assets.xcassets */; };
 		05FA72632D6DC16100DE314B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FA72552D6DC16100DE314B /* AppDelegate.swift */; };
 		05FA72642D6DC16100DE314B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FA725C2D6DC16100DE314B /* SceneDelegate.swift */; };
@@ -56,6 +58,8 @@
 		05096F892D7A7D7E00563E91 /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
 		05096F8D2D7A829C00563E91 /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
 		05096F902D7A94F000563E91 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		050972862D86E78200563E91 /* TabButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButtonView.swift; sourceTree = "<group>"; };
+		050972882D86E7D100563E91 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		05FA72212D6DC13500DE314B /* CleanArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05FA72372D6DC13700DE314B /* CleanArchitectureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanArchitectureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05FA72412D6DC13700DE314B /* CleanArchitectureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanArchitectureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +133,7 @@
 		05096F8B2D7A828100563E91 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				050972852D86E76B00563E91 /* View */,
 				05096F8F2D7A94DC00563E91 /* ViewControllers */,
 				05096F8C2D7A829200563E91 /* ViewModel */,
 			);
@@ -149,6 +154,15 @@
 				05096F902D7A94F000563E91 /* UserListViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		050972852D86E76B00563E91 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				050972862D86E78200563E91 /* TabButtonView.swift */,
+				050972882D86E7D100563E91 /* UserTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		05FA72182D6DC13500DE314B = {
@@ -576,7 +590,9 @@
 				05FA72642D6DC16100DE314B /* SceneDelegate.swift in Sources */,
 				05FA727B2D6E20DB00DE314B /* UserListUseCase.swift in Sources */,
 				05FDBD312D6EFE3500BE9E3A /* UserNetwork.swift in Sources */,
+				050972892D86E7D100563E91 /* UserTableViewCell.swift in Sources */,
 				05FDBD232D6E234600BE9E3A /* UserRepositoryProtocol.swift in Sources */,
+				050972872D86E78200563E91 /* TabButtonView.swift in Sources */,
 				05FA72752D6DC31600DE314B /* UserListItem.swift in Sources */,
 				05FDBD382D704E7700BE9E3A /* UserRepository.swift in Sources */,
 				05FDBD2F2D6EF98C00BE9E3A /* NetworkEnvironment.swift in Sources */,
