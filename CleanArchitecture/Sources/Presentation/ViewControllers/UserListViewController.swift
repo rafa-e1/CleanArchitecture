@@ -87,6 +87,17 @@ class UserListViewController: UIViewController {
 
             (cell as? UserTableViewCell)?.apply(cellData: cellData)
 
+            if let cell = cell as? UserTableViewCell,
+               case let .user(user, isFavorite) = cellData {
+                cell.favoriteButton.rx.tap.bind {
+                    if isFavorite {
+                        self.deleteFavorite.accept(user.id)
+                    } else {
+                        self.saveFavorite.accept(user)
+                    }
+                }.disposed(by: cell.disposeBag)
+            }
+
             return cell
         }.disposed(by: disposeBag)
 

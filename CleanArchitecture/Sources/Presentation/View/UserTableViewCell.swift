@@ -8,10 +8,13 @@
 import UIKit
 
 import Kingfisher
+import RxSwift
 
 final class UserTableViewCell: UITableViewCell {
 
     static let id = "UserTableViewCell"
+
+    var disposeBag = DisposeBag()
 
     private let userImageView = {
         let imageView = UIImageView()
@@ -29,11 +32,20 @@ final class UserTableViewCell: UITableViewCell {
         return label
     }()
 
+    let favoriteButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        button.tintColor = .systemRed
+        return button
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        addSubview(userImageView)
-        addSubview(nameLabel)
+        contentView.addSubview(userImageView)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(favoriteButton)
 
         userImageView.snp.makeConstraints { make in
             make.verticalEdges.leading.equalToSuperview().inset(20)
@@ -44,6 +56,12 @@ final class UserTableViewCell: UITableViewCell {
             make.top.equalTo(userImageView)
             make.leading.equalTo(userImageView.snp.trailing).offset(8)
             make.trailing.equalToSuperview().inset(20)
+        }
+
+        favoriteButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(-20)
+            make.size.equalTo(40)
         }
     }
 
@@ -56,5 +74,12 @@ final class UserTableViewCell: UITableViewCell {
 
         userImageView.kf.setImage(with: URL(string: user.imageURL))
         nameLabel.text = user.login
+        favoriteButton.isSelected = isFavorite
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        disposeBag = DisposeBag()
     }
 }
