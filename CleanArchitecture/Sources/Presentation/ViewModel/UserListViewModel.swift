@@ -202,4 +202,15 @@ enum TabButtonType: String {
 enum UserListCellData {
     case user(user: UserListItem, isFavorite: Bool)
     case header(String)
+
+    var id: String {
+        switch self {
+        case .user: UserTableViewCell.id
+        case .header: HeaderTableViewCell.id
+        }
+    }
+}
+
+protocol UserListCellProtocol {
+    func apply(cellData: UserListCellData)
 }

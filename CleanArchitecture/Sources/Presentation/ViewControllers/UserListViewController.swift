@@ -34,6 +34,7 @@ class UserListViewController: UIViewController {
     private let tableView = {
         let tableView = UITableView()
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.id)
+        tableView.register(HeaderTableViewCell.self, forCellReuseIdentifier: HeaderTableViewCell.id)
         return tableView
     }()
 
@@ -79,13 +80,11 @@ class UserListViewController: UIViewController {
         )
 
         output.cellData.bind(to: tableView.rx.items) { tableView, index, cellData in
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: UserTableViewCell.id
-            ) else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellData.id) else {
                 return UITableViewCell()
             }
 
-            (cell as? UserTableViewCell)?.apply(cellData: cellData)
+            (cell as? UserListCellProtocol)?.apply(cellData: cellData)
 
             if let cell = cell as? UserTableViewCell,
                case let .user(user, isFavorite) = cellData {

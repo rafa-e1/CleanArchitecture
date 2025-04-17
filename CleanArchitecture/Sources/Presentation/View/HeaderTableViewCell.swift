@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HeaderTableViewCell: UITableViewCell {
+final class HeaderTableViewCell: UITableViewCell, UserListCellProtocol {
 
     static let id = "HeaderTableViewCell"
 
