@@ -49,7 +49,8 @@ final class UserTableViewCell: UITableViewCell {
 
         userImageView.snp.makeConstraints { make in
             make.verticalEdges.leading.equalToSuperview().inset(20)
-            make.size.equalTo(80)
+            make.width.equalTo(80)
+            make.height.equalTo(80).priority(.high)
         }
 
         nameLabel.snp.makeConstraints { make in
