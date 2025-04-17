@@ -23,8 +23,7 @@ final class HeaderTableViewCell: UITableViewCell, UserListCellProtocol {
         contentView.addSubview(titleLabel)
 
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
-            make.bottom.equalToSuperview().inset(10)
+            make.top.leading.bottom.equalToSuperview().inset(20)
         }
     }
 
