@@ -134,7 +134,7 @@ final class UserListViewModel: UserListViewModelProtocol {
             let result = await useCase.fetchUser(query: urlAllowedQuery, page: page)
             switch result {
             case .success(let users):
-                if page == 0 {
+                if page == 1 {
                     fetchUserList.accept(users.items)
                 } else {
                     fetchUserList.accept(fetchUserList.value + users.items)
